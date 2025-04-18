@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC标签通知</title>
+    <script>
+        // 页面加载完成后执行
+        window.onload = function() {
+            // 发送GET请求到API
+            fetch('https://api.day.app/ja7aEetx3ubyjMLLqWSJ79/NFC 标签/有个傻子扫了一下你的标签')
+                .then(response => {
+                    if(response.ok) {
+                        console.log('API请求成功');
+                    } else {
+                        console.error('API请求失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('API请求错误:', error);
+                });
+            
+            // 尝试打开自定义URI
+            try {
+                window.location.href = 'snssdk1128://aweme/detail/7008350386868210975';
+                
+                // 如果上面的方法不工作，可以尝试创建一个隐藏的iframe
+                setTimeout(function() {
+                    var iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = 'snssdk1128://aweme/detail/7008350386868210975';
+                    document.body.appendChild(iframe);
+                    
+                    // 移除iframe
+                    setTimeout(function() {
+                        document.body.removeChild(iframe);
+                    }, 100);
+                }, 500);
+            } catch(e) {
+                console.error('打开URI失败:', e);
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>NFC标签通知</h1>
+    <p>页面加载中，请稍候...</p>
+</body>
+</html>
